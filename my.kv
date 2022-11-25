@@ -1,0 +1,31 @@
+ScoringGameScreenManager:
+	CreateTeamScreen:
+	ScoringScreen:
+
+<CreateTeamScreen>:
+	name: "teams"
+
+	GridLayout:
+		cols:1
+
+		TextInput:
+			id: teamname
+			multiline: False
+			hint_text: "Nom de l'équipe"
+
+		Button:
+			id: createteam
+			text: "Créer l'équipe"
+			on_press: root.create_team(teamname.text)
+
+		Button: 
+			text: "Commencer"
+			on_press:
+				app.root.current = "scoring" if teamname.text != "" else "teams"
+				root.manager.transition.direction = "up"
+
+<ScoringScreen>:
+	name: "scoring"
+
+	Label: 
+		text: "Hello World"
