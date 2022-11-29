@@ -1,31 +1,74 @@
+#:import Button kivy.uix.button.Button
+#:import Label kivy.uix.button.Button
+
 ScoringGameScreenManager:
-	CreateTeamScreen:
-	ScoringScreen:
+    CreateTeamScreen:
+    ScoringScreen:
+
+<InfoTeam>
+    name: "team"
+
+    orientation: "vertical"
+
+    Label:
+        id:teamname
+        text: "Hello"
+        font_size:40
+
+    Label:
+        id:points
+        text: "0"
+        font_size:50
+
+    BoxLayout:
+        orientation:"horizontal"
+        Button:
+            id:addone
+            text: "1"
+            font_size:30
+
+        Button:
+            id:addtwo
+            text: "2"
+            font_size:30
+
+        Button:
+            id:addthree
+            text: "3"
+            font_size:30
 
 <CreateTeamScreen>:
-	name: "teams"
+    name: "teams"
 
-	GridLayout:
-		cols:1
+    GridLayout:
+        cols:1
 
-		TextInput:
-			id: teamname
-			multiline: False
-			hint_text: "Nom de l'équipe"
+        TextInput:
+            id: teamnameinput
+            multiline: False
+            hint_text: "Nom de l'équipe"
 
-		Button:
-			id: createteam
-			text: "Créer l'équipe"
-			on_press: root.create_team(teamname.text)
+        Button:
+            id: createteam
+            text: "Créer l'équipe"
+            on_press: root.create_team(teamnameinput.text)
 
-		Button: 
-			text: "Commencer"
-			on_press:
-				app.root.current = "scoring" if teamname.text != "" else "teams"
-				root.manager.transition.direction = "up"
+        Button:
+            text: "Commencer"
+            on_press:
+                app.root.current = "scoring" if teamnameinput.text != "" else "teams"
+                root.manager.transition.direction = "up"
 
 <ScoringScreen>:
-	name: "scoring"
+    name: "scoring"
 
-	Label: 
-		text: "Hello World"
+    GridLayout:
+        cols: 2
+        rows: 2
+        spacing: [10,10]
+            
+
+        InfoTeam:
+        InfoTeam:
+        InfoTeam:
+        InfoTeam:
