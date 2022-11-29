@@ -1,8 +1,9 @@
 import kivy
-kivy.require('2.1.0') # replace with your current kivy version !
+#kivy.require('2.1.0') # replace with your current kivy version !
 
 from kivy.app import App
 from kivy.lang import Builder
+from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.screenmanager import ScreenManager, Screen
 
 class Team():
@@ -20,6 +21,9 @@ class Team():
     def set_points(self, points):
         self.__points = points
 
+class InfoTeam(BoxLayout):
+    pass
+
 class CreateTeamScreen(Screen):
     pass
 
@@ -33,13 +37,14 @@ class ScoringScreen(Screen):
 class ScoringGameScreenManager(ScreenManager):
     pass
 
-kv = Builder.load_file("my.kv")
-
 class ScoringGameApp(App):
 
     def build(self):
-        return kv
+        return Builder.load_file("my.kv")
+
+def main():
+    ScoringGameApp().run()
 
 
 if __name__ == '__main__':
-    ScoringGameApp().run()
+    main()
