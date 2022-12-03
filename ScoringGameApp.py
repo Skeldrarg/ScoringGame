@@ -24,7 +24,7 @@ class TeamLayout(BoxLayout):
     def set_team_name(self):
         self.teamName = self.ids.teamnameinput.text
         self.remove_widget(self.ids.teamname)
-        self.add_widget(Label(text=self.teamName, font_size=30), index=2)
+        self.add_widget(Label(text=self.teamName, font_size="30sp"), index=2)
 
 class IntroScreen(Screen):
     pass
