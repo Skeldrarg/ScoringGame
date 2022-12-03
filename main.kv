@@ -1,0 +1,94 @@
+#:import Button kivy.uix.button.Button
+#:import Label kivy.uix.label.Label
+#:import TextInput kivy.uix.label.Label
+#:import WipeTransition kivy.uix.screenmanager.WipeTransition
+#:import NoTransition kivy.uix.screenmanager.NoTransition
+#:import SlideTransition kivy.uix.screenmanager.SlideTransition
+#:import CardTransition kivy.uix.screenmanager.CardTransition
+#:import SwapTransition kivy.uix.screenmanager.SwapTransition
+#:import FadeTransition kivy.uix.screenmanager.FadeTransition
+#:import WipeTransition kivy.uix.screenmanager.WipeTransition
+#:import FallOutTransition kivy.uix.screenmanager.FallOutTransition
+#:import RiseInTransition kivy.uix.screenmanager.RiseInTransition
+
+ScoringGameScreenManager:
+    transition:NoTransition()
+    IntroScreen:
+    ScoringScreen:
+
+<TeamLayout>
+
+    orientation: "vertical"
+
+    BoxLayout:
+        orientation:"horizontal"
+        id:teamname
+
+        TextInput:
+            id: teamnameinput
+            multiline: False
+            hint_text: "Nom de l'équipe"
+
+        Button:
+            id:setteamname
+            text: "OK"
+            on_press:
+                root.set_team_name()
+
+    Label:
+        id: points_label
+        text: '0'
+        font_size:30
+
+    BoxLayout:
+        orientation:"horizontal"
+        Button:
+            id:addone
+            text: "1"
+            font_size:30
+            on_press:
+                root.add_points(1)
+
+        Button:
+            id:addtwo
+            text: "2"
+            font_size:30
+            on_press:
+                root.add_points(2)
+
+        Button:
+            id:addthree
+            text: "3"
+            font_size:30
+            on_press:
+                root.add_points(3)
+
+
+<IntroScreen>:
+    name: "intro"
+
+    BoxLayout:
+        orientation: "vertical"
+
+        Label:
+            id: welcome
+            text: "Bienvenue !"
+
+        Button:
+            id: play
+            text: "Commencer :"
+            on_press:
+                app.root.current = "scoring"
+
+<ScoringScreen>:
+    name: "scoring"
+
+    GridLayout:
+        cols: 2
+        rows: 2
+        spacing: [10,10]
+
+        TeamLayout
+        TeamLayout
+        TeamLayout
+        TeamLayout
