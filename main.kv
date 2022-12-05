@@ -2,6 +2,7 @@
 #:import MDLabel kivy.uix.label.Label
 #:import MDTextField kivymd.uix.textfield.MDTextField
 #:import MDAnchorLayout kivymd.uix.anchorlayout.MDAnchorLayout
+#:import MDGridLayout kivymd.uix.gridlayout.MDGridLayout
 #:import WipeTransition kivy.uix.screenmanager.WipeTransition
 #:import NoTransition kivy.uix.screenmanager.NoTransition
 #:import SlideTransition kivy.uix.screenmanager.SlideTransition
@@ -38,32 +39,43 @@ ScoringGameScreenManager:
 
     MDLabel:
         id: points_label
-        text: '0'
+        text: "0"
         font_style:"H2"
         halign:"center"
 
-    MDBoxLayout:
-        orientation:"horizontal"
-        MDRaisedButton:
-            id:addone
-            text: "1"
-            font_size:"30sp"
-            on_press:
-                root.add_points(1)
+    MDAnchorLayout:
+        anchor_x:"center"
+        anchor_y:"bottom"
+        
+        MDGridLayout:
+            col:3
+            rows:1
+            adaptive_width:True
+            orientation:"lr-tb"
 
-        MDRaisedButton:
-            id:addtwo
-            text: "2"
-            font_size:"30sp"
-            on_press:
-                root.add_points(2)
+            MDRaisedButton:
+                id:addone
+                text: "1"
+                font_size:"30sp"
+                adaptive_width:True
+                on_press:
+                    root.add_points(1)
 
-        MDRaisedButton:
-            id:addthree
-            text: "3"
-            font_size:"30sp"
-            on_press:
-                root.add_points(3)
+            MDRaisedButton:
+                id:addtwo
+                text: "2"
+                font_size:"30sp"
+                adaptive_width:True
+                on_press:
+                    root.add_points(2)
+
+            MDRaisedButton:
+                id:addthree
+                text: "3"
+                font_size:"30sp"
+                adaptive_width:True
+                on_press:
+                    root.add_points(3)
 
 
 <IntroScreen>:
@@ -75,7 +87,7 @@ ScoringGameScreenManager:
         MDLabel:
             id: welcome
             text: "Bienvenue !"
-            font_size:"30sp"
+            font_style:"H1"
             halign:"center"
 
         MDAnchorLayout:
@@ -83,6 +95,7 @@ ScoringGameScreenManager:
                 id: play
                 text: "Commencer"
                 font_style:"Button"
+                font_size:"30sp"
                 halign:"center"
                 on_press:
                     app.root.current = "scoring"
