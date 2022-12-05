@@ -1,6 +1,7 @@
-#:import Button kivy.uix.button.Button
-#:import Label kivy.uix.label.Label
-#:import TextInput kivy.uix.label.Label
+#:import MDRaisedButton kivymd.uix.button.MDRaisedButton
+#:import MDLabel kivy.uix.label.Label
+#:import MDTextField kivymd.uix.textfield.MDTextField
+#:import MDAnchorLayout kivymd.uix.anchorlayout.MDAnchorLayout
 #:import WipeTransition kivy.uix.screenmanager.WipeTransition
 #:import NoTransition kivy.uix.screenmanager.NoTransition
 #:import SlideTransition kivy.uix.screenmanager.SlideTransition
@@ -24,39 +25,40 @@ ScoringGameScreenManager:
         orientation:"horizontal"
         id:teamname
 
-        TextInput:
+        MDTextField:
             id: teamnameinput
             multiline: False
             hint_text: "Nom de l'équipe"
 
-        Button:
+        MDRaisedButton:
             id:setteamname
             text: "OK"
             on_press:
                 root.set_team_name()
 
-    Label:
+    MDLabel:
         id: points_label
         text: '0'
-        font_size:"30sp"
+        font_style:"H2"
+        halign:"center"
 
-    BoxLayout:
+    MDBoxLayout:
         orientation:"horizontal"
-        Button:
+        MDRaisedButton:
             id:addone
             text: "1"
             font_size:"30sp"
             on_press:
                 root.add_points(1)
 
-        Button:
+        MDRaisedButton:
             id:addtwo
             text: "2"
             font_size:"30sp"
             on_press:
                 root.add_points(2)
 
-        Button:
+        MDRaisedButton:
             id:addthree
             text: "3"
             font_size:"30sp"
@@ -67,20 +69,23 @@ ScoringGameScreenManager:
 <IntroScreen>:
     name: "intro"
 
-    BoxLayout:
+    MDBoxLayout:
         orientation: "vertical"
 
-        Label:
+        MDLabel:
             id: welcome
             text: "Bienvenue !"
             font_size:"30sp"
+            halign:"center"
 
-        Button:
-            id: play
-            text: "Commencer :"
-            font_size:"30sp"
-            on_press:
-                app.root.current = "scoring"
+        MDAnchorLayout:
+            MDRaisedButton:
+                id: play
+                text: "Commencer"
+                font_style:"Button"
+                halign:"center"
+                on_press:
+                    app.root.current = "scoring"
 
 <ScoringScreen>:
     name: "scoring"

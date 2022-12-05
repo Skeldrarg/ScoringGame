@@ -1,19 +1,17 @@
 import kivy
-from kivy.app import App
+from kivymd.app import MDApp
 from kivy.lang import Builder
-from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.label import Label
-from kivy.uix.popup import Popup
-from kivy.uix.screenmanager import ScreenManager, Screen
-from kivy.properties import ObjectProperty
-from androidtoast import toast
+from kivymd.uix.boxlayout import MDBoxLayout
+from kivymd.uix.label.label import MDLabel
+from kivymd.uix.screenmanager import MDScreenManager
+from kivymd.uix.screen import Screen
+from kivymd.toast import toast
 
 kivy.require('2.1.0') # replace with your current kivy version !
 
-class TeamLayout(BoxLayout):
+class TeamLayout(MDBoxLayout):
 
     points = 0
-    teamName = ""
     def get_points(self):
         return self.points
 
@@ -26,9 +24,9 @@ class TeamLayout(BoxLayout):
 
     def set_team_name(self):
         if self.ids.teamnameinput.text != "":
-            self.teamName = self.ids.teamnameinput.text
+            teamName = self.ids.teamnameinput.text
             self.remove_widget(self.ids.teamname)
-            self.add_widget(Label(text=self.teamName, font_size="30sp"), index=2)
+            self.add_widget(MDLabel(text=teamName, font_style="H4", halign="center"), index=2)
         else:
             toast("Nom de l'équipe vide")
 
@@ -38,10 +36,10 @@ class IntroScreen(Screen):
 class ScoringScreen(Screen):
     pass
 
-class ScoringGameScreenManager(ScreenManager):
+class ScoringGameScreenManager(MDScreenManager):
     pass
 
-class ScoringGameApp(App):
+class ScoringGameApp(MDApp):
 
     def build(self):
         return Builder.load_file("main.kv")
