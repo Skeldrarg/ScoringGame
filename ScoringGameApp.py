@@ -43,9 +43,3 @@ class ScoringGameApp(MDApp):
 
     def build(self):
         return Builder.load_file("main.kv")
-
-def main():
-    ScoringGameApp().run()
-
-if __name__ == '__main__':
-    main()
